@@ -15,7 +15,23 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'dashboard#show'
     resources :products, except: [:edit, :update, :show]
+    resources :categories, except: [:edit, :update, :show]
   end
+
+  # routes for showing users a log in form,
+  # logging them in
+  # and then logging them out
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
+  # routes for signup
+  # get /signup renders a form in the browser for registration
+  # post /users creates a user in the database using data provided by user
+  get '/signup' => 'users#new'
+  post '/users' => 'users#create'
+
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
