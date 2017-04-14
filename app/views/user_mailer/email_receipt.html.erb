@@ -1,0 +1,44 @@
+<h1>Order id <%= @order.id %></h1>
+<p>
+  You have purchased these items.
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Individual Item Price</th>
+      <th>Quantity</th>
+      <th>Total Price of Item</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_total = 0 %>
+    <% @order.line_items.each do |item| %>
+      <% @cart_total += item.total_price %>
+      <tr>
+        <td>
+          <h4><%= item.product.name %></h4>
+        </td>
+        <td>
+          <%= item.item_price %>
+        </td>
+        <td>
+          <%= item.quantity %>
+        </td>
+        <td>
+          <%= item.total_price %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+  <tfoot>
+    <tr>
+      <th colspan="3">
+        TOTAL:
+      </th>
+      <th>
+        <%= @cart_total %>
+      </th>
+    </tr>
+  </tfoot>
+</table>
