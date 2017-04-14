@@ -28,13 +28,20 @@
 
   </article>
 
-  <ul>
-    <% @product.reviews.each do |review| %>
-      <li>
-        <%= review.rating %>/5
-        <%= review.description %>
-      </li>
-    <% end %>
-  </ul>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Reviews</h3>
+    </div>
+    <div class="panel-body">
+      <ul class="list-group">
+        <% @product.reviews.each do |review| %>
+          <li class="list-group-item">
+            <strong><%= review.rating %>/5</strong>
+            <br />
+            <%= review.description %>
+          </li>
+        <% end %>
+      </ul>
+  </div>
 
 </section>
