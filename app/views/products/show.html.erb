@@ -25,8 +25,43 @@
         </dl>
       </div>
     </div>
-
   </article>
+
+  <% if current_user %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add a Review</h3>
+      </div>
+      <div class="panel-body">
+        <div class="form-horizontal">
+          <%= form_for [@product, @product.reviews.build] do |f| %>
+            <div class="form-group">
+              <label for="rating" class="col-sm-2 control-label">Rating</label>
+              <div class="col-sm-10">
+                <%= f.select :rating, [ '1','2','3','4','5' ] %>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description" class="col-sm-2 control-label">Description</label>
+              <div class="col-sm-10">
+                <%= f.text_area :description %>
+              </div>
+            </div>
+            <%= f.submit "Submit", class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Add a Review</h3>
+      </div>
+      <div class="panel-body">
+        Please <%= link_to 'log in', '/login' %> to post reviews
+      </div>
+    </div>
+  <% end %>
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -34,12 +69,22 @@
     </div>
     <div class="panel-body">
       <ul class="list-group">
-        <% @product.reviews.each do |review| %>
+        <% @product.reviews.reverse.each do |review| %>
           <li class="list-group-item">
             <strong><%= review.rating %>/5</strong>
             <br />
             <%= review.description %>
+
+            <% if review.user_id == current_user.id %>
+              <%= link_to 'Destroy', [@product, review], method: :delete, data: { confirm: "Are you sure?" } %>
+            <% end %>
+
           </li>
+
+
+          <!-- <p>review user id is <%= review.user_id %></p>
+          <p> user id is <%= current_user.id %></p> -->
+
         <% end %>
       </ul>
   </div>
