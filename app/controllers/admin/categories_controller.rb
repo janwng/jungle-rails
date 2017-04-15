@@ -28,4 +28,5 @@ class Admin::CategoriesController < ApplicationController
     )
   end
 
+
 end
