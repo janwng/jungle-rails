@@ -70,21 +70,17 @@
     <div class="panel-body">
       <ul class="list-group">
         <% @product.reviews.reverse.each do |review| %>
-          <li class="list-group-item">
-            <strong><%= review.rating %>/5</strong>
-            <br />
-            <%= review.description %>
+          <% if review.rating %>
+            <li class="list-group-item">
+              <strong><%= review.rating %>/5</strong>
+              <br />
+              <%= review.description %>
 
-            <% if review.user_id == current_user.id %>
-              <%= link_to 'Destroy', [@product, review], method: :delete, data: { confirm: "Are you sure?" } %>
-            <% end %>
-
-          </li>
-
-
-          <!-- <p>review user id is <%= review.user_id %></p>
-          <p> user id is <%= current_user.id %></p> -->
-
+              <% if review.user_id == current_user.id %>
+                <%= link_to 'Destroy', [@product, review], method: :delete, data: { confirm: "Are you sure?" } %>
+              <% end %>
+            </li>
+          <% end %>
         <% end %>
       </ul>
   </div>
