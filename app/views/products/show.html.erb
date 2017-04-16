@@ -79,10 +79,13 @@
                 </span><%= fa_icon 'star-o' %></span>
               <% end %>
               <br />
-              <%= review.description %>
+              <p>Review from <strong><%= review.user.first_name %></strong></p>
+              <h4><%= review.description %></h4>
+
+
 
               <% if review.user_id == current_user.id %>
-                <%= link_to 'Destroy', [@product, review], method: :delete, data: { confirm: "Are you sure?" } %>
+                <%= link_to 'Delete', [@product, review], method: :delete, data: { confirm: "Are you sure? I'm sure it's a wonderful comment!" } %>
               <% end %>
             </li>
           <% end %>

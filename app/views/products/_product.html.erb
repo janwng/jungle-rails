@@ -5,9 +5,20 @@
       <h4><%= product.name %></h4>
     <% end %>
   </header>
+
+  <div class="avg-rating">
+    <% product.reviews.average(:rating).to_i.times do %>
+      </span><%= fa_icon 'star' %></span>
+    <% end %>
+    <%=product.reviews.average(:rating)%>
+  </div>
+
+  <br />
+
   <p class="description">
     <%= product.description %>
   </p>
+
   <footer class="actions">
     <% if product.quantity > 0 %>
       <%= link_to add_item_cart_path(product_id: product.id), class: 'btn btn-primary', method: :put do %>
