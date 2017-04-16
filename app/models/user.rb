@@ -3,4 +3,7 @@ class User < ActiveRecord::Base
   has_secure_password
 
   has_many :reviews
+
+  # makes sure that users cannot register with existing emails
+  validates :email, uniqueness: true
 end

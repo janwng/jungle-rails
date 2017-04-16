@@ -10,7 +10,10 @@ class UsersController < ApplicationController
     else
       redirect_to '/signup'
     end
+
+    
   end
+
 
   private
   # anything below private is only accessible inside this file
