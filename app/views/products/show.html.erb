@@ -72,7 +72,12 @@
         <% @product.reviews.reverse.each do |review| %>
           <% if review.rating %>
             <li class="list-group-item">
-              <strong><%= review.rating %>/5</strong>
+              <% review.rating.times do  %>
+                </span><%= fa_icon 'star' %></span>
+              <% end %>
+              <% (5 - review.rating).times do  %>
+                </span><%= fa_icon 'star-o' %></span>
+              <% end %>
               <br />
               <%= review.description %>
 
