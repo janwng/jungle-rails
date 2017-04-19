@@ -158,3 +158,16 @@ prod2.reviews.create!({
 })
 
 puts "DONE!"
+
+puts "Re-creating Users ..."
+
+User.destroy_all
+
+users.create!({
+  first_name: "Jan",
+  last_name: "Wong",
+  email: "janwong@test.com",
+  password: "badpassword"
+})
+
+puts "DONE!"
